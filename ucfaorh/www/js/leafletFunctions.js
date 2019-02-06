@@ -6,7 +6,7 @@ var testMarkerRed= L.AwesomeMarkers.icon({
 
 });
 var testMarkerPink = L.AwesomeMarkers.icon({
-	icon: 'play'
+	icon: 'play',
 	markerColor: 'pink'
 });
 // function that when called will add a point, line and polygon to the map 
