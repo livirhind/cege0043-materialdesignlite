@@ -1,7 +1,7 @@
 function trackAndCircle () {
-	     trackLocation();
+         trackLocation();
 	     addPointLinePoly();
-}
+         }
 
 
 
