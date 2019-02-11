@@ -55,9 +55,9 @@ function calculateDistance(lat1,lon1,lat2,lon2,unit){
 function getDistanceFromMultiplePoints(position){
 	var minDistance = 100000000000;
 	var closestQuake= "";
-	for(var i = 0; i< earthquake.features.length;i++){
-		var obj = earthquake.features[i];
-		var distance = calculateDistance(position.coords.latitude,position.coords.longitude,obj.geometry.coordinate[0],obj.geometry.coordinates[1],'K');
+	for(var i = 0; i < earthquakes.features.length; i++) {
+		var obj = earthquakes.features[i];
+		     var distance = calculateDistance(position.coords.latitude,position.coords.longitude,obj.geometry.coordinate[0], obj.geometry.coordinates[1],'K');
 		if (distance < minDistance){
 			minDistance = distance;
 			closestQuake = obj.properties.place;
