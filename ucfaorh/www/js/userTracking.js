@@ -19,7 +19,7 @@
 
 	 function getDistance(){
 	//getDistanceFromPoint is the function called once the distance has been found
-	navigator.geolocation.getCurrentPosition(getDistanceFromMultiplePoint);
+	navigator.geolocation.getCurrentPosition(getDistanceFromMultiplePoints);
 }
 function getDistanceFromPoint(position){
 	// find the coordinates of a point using this website
