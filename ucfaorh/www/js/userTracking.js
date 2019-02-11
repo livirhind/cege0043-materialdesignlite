@@ -32,7 +32,7 @@ function getDistanceFromPoint(position){
 		alert("You are within 100m of UCL");
 	}
 	else {
-		alert("You are not within 100m of UCL")
+		alert("You are not within 100m of UCL");
 	}
 }
 // code adapted from https://www.htmlgoodies.com/beyond/javascript/calculate-the-distance-between-two-points-inyour-web-apps.html
