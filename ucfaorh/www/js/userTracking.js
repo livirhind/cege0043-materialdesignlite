@@ -30,13 +30,10 @@ function getDistanceFromPoint(position){
 	// return the distance in kilometers 
 	var distance = calculateDistance(position.coords.latitude, position.coords.longitude,lat,lng,'K');
 	if (distance <= 0.1){
-		alert("You're within 100m of UCL");
-	}
-		else (distance >= 0.1) {
-			alert("You're not within 100m of UCL");
+		alert("You're within 100m of UCL");}
+		else (distance >= 0.1){
+			alert("You're not within 100m of UCL");}
 		}
-	
-}
 // code adapted from https://www.htmlgoodies.com/beyond/javascript/calculate-the-distance-between-two-points-inyour-web-apps.html
 
 function calculateDistance(lat1,lon1,lat2,lon2,unit){
