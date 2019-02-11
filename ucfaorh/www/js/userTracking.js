@@ -13,6 +13,8 @@
          		mymap.removeLayer(userMarker);
          	}
 	        userMarker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap).bindPopup("<b>You were here</b>");
+            myMap.setView([position.coords.latitude, position.coords.longitude], 13);
+            getDistance();
 	         }
 
 	 function getDistance(){
@@ -27,7 +29,13 @@ function getDistanceFromPoint(position){
 	var lng = -0.13818;
 	// return the distance in kilometers 
 	var distance = calculateDistance(position.coords.latitude, position.coords.longitude,lat,lng,'K');
-	document.getElementById('showDistance').innerHTML = "Distance: " + distance;
+	if (distance <= 0.1){
+		alert("You're within 100m of UCL");
+	}
+		else (distance >= 0.1) {
+			alert("You're not within 100m of UCL");
+		}
+	
 }
 // code adapted from https://www.htmlgoodies.com/beyond/javascript/calculate-the-distance-between-two-points-inyour-web-apps.html
 
