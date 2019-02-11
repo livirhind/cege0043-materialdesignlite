@@ -1,6 +1,7 @@
 var client;
-var earthquakes;
 var earthquakelayer;
+var earthquakes;
+
 var testMarkerRed= L.AwesomeMarkers.icon({
 	icon:'play',
 	markerColor: 'red'
@@ -53,7 +54,7 @@ function addPointLinePoly () {
 function loadEarthquakelayer(earthquakedata){
 	//convert the text to JSON
 	var earthquakejson = JSON.parse(earthquakedata);
-	earthquakes = earthquakesjson;
+	earthquakes = earthquakejson;
 	// add the JSON layer onto the map - it will appear using the default icons
 	earthquakelayer = L.geoJSON(earthquakejson,
 		{ 
