@@ -1,35 +1,47 @@
         var userMarker;
+
+        function zoomOnMap(){
+        	alert('Zooming in to display your location');
+        	navigator.geolocation.getCurrentPosition(getPosition);
+        }
+        
+        function getPosition(position){
+        	mymap.setView([position.coords.latitude, position.coords.longitude],15);
+        }
+
         function trackLocation(){
 			if (navigator.geolocation){
 				navigator.geolocation.watchPosition(showPosition);
 				
 			} 
 			else {
-				document.getElementById('showLocation').innerHTML = "Geolocation is not supported by this browser.";}
+				document.getElementById('showLocation').innerHTML = "Geolocation is not supported by this browser.";
+			}
 		}
 
          function showPosition(position){
          	if(userMarker){
          		mymap.removeLayer(userMarker);
          	}
-	        userMarker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap).bindPopup("<b>You were here</b>").openPopup();
-            myMap.setView([position.coords.latitude, position.coords.longitude], 10);
-            getDistance()
+	        userMarker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap).bindPopup("<b>You were here</b>");
+            document.getElementById('showLocation').innerHTML = 'Latitude:' + position.coords.latitude + '<br>Longitude:' + position.coords.longitude;
+            getDistance();
 	         }
 
 	 function getDistance(){
 	//getDistanceFromPoint is the function called once the distance has been found
-	navigator.geolocation.getCurrentPosition(getDistanceFromMultiplePoints);
+	alert('Getting distance')
+	navigator.geolocation.getCurrentPosition(getDistanceFromPoint);
 }
 function getDistanceFromPoint(position){
 	// find the coordinates of a point using this website
 	//these are the coordinates for Warren Street
-	var lat = 51.524616;
-	var lng = -0.13818;
+	var lat = 51.404164;
+	var lng = -0.003181;
 	// return the distance in kilometers 
 	var distance = calculateDistance(position.coords.latitude, position.coords.longitude,lat,lng,'K');
 	if(distance <= 0.1){
-		alert("You are within 100m of UCL!");
+		alert("You are within 100m of Valley Road!");
 	}
 
 }
@@ -57,11 +69,11 @@ function getDistanceFromMultiplePoints(position){
 	var closestQuake= "";
 	for(var i = 0; i < earthquakes.features.length; i++) {
 		var obj = earthquakes.features[i];
-		     var distance = calculateDistance(position.coords.latitude,position.coords.longitude,obj.geometry.coordinate[0], obj.geometry.coordinates[1],'K');
+		     var distance = calculateDistance(position.coords.latitude, position.coords.longitude,obj.geometry.coordinate[0], obj.geometry.coordinates[1],'K');
 		if (distance < minDistance){
 			minDistance = distance;
 			closestQuake = obj.properties.place;
 		}
 	}
-	alert("Earthquake: " + closestQuake + "is distance" + minDistance + "away");
+	alert("Earthquake: " + closestQuake + " is distance " + minDistance + "away");
 }
