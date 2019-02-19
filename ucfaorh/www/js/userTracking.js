@@ -30,20 +30,16 @@
 
 	 function getDistance(){
 	//getDistanceFromPoint is the function called once the distance has been found
-	alert('Getting distance')
+	//alert('Getting distance')
 	navigator.geolocation.getCurrentPosition(getDistanceFromPoint);
 }
 function getDistanceFromPoint(position){
-	// find the coordinates of a point using this website
-	//these are the coordinates for Warren Street
 	var lat = 51.404164;
-	var lng = -0.003181;
-	// return the distance in kilometers 
-	var distance = calculateDistance(position.coords.latitude, position.coords.longitude,lat,lng,'K');
-	if(distance <= 0.1){
-		alert("You are within 100m of Valley Road!");
+	var lng = 0.003181;
+	var distance = calculateDistance(position.coords.latitude, position.coords.longitude, lat, lng, 'K');
+	if (distance <= 0.1){
+		alert("Within proximity of Valley Road (100m)");
 	}
-
 }
 // code adapted from https://www.htmlgoodies.com/beyond/javascript/calculate-the-distance-between-two-points-inyour-web-apps.html
 
