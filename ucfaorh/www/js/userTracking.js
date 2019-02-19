@@ -31,14 +31,14 @@
 	 function getDistance(){
 	//getDistanceFromPoint is the function called once the distance has been found
 	//alert('Getting distance')
-	navigator.geolocation.getCurrentPosition(getDistanceFromPoint);
+	navigator.geolocation.getCurrentPosition(getDistanceFromMultiplePoints);
 }
 function getDistanceFromPoint(position){
-	var lat = 51.404164;
-	var lng = 0.003181;
+	var lat = 51.524616;
+	var lng = -0.13818;
 	var distance = calculateDistance(position.coords.latitude, position.coords.longitude, lat, lng, 'K');
 	if (distance <= 0.1){
-		alert("Within proximity of Valley Road (100m)");
+		alert("Within proximity of UCL campus (100m)");
 	}
 }
 // code adapted from https://www.htmlgoodies.com/beyond/javascript/calculate-the-distance-between-two-points-inyour-web-apps.html
