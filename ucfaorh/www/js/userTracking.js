@@ -61,7 +61,7 @@ function calculateDistance(lat1,lon1,lat2,lon2,unit){
 
             
 function getDistanceFromMultiplePoints(position){
-	var minDistance = 100000000000;
+	var minDistance = 8000000;
 	var closestQuake= "";
 	for(var i = 0; i < earthquakes.features.length; i++) {
 		var obj = earthquakes.features[i];
@@ -71,5 +71,5 @@ function getDistanceFromMultiplePoints(position){
 			closestQuake = obj.properties.place;
 		}
 	}
-	alert("Earthquake: " + closestQuake + " is distance " + minDistance + "away");
+	alert("Earthquake: " + closestQuake + " is " + minDistance + " km away");
 }

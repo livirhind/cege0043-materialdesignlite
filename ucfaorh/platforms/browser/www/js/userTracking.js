@@ -31,14 +31,14 @@
 	 function getDistance(){
 	//getDistanceFromPoint is the function called once the distance has been found
 	//alert('Getting distance')
-	navigator.geolocation.getCurrentPosition(getDistanceFromPoint);
+	navigator.geolocation.getCurrentPosition(getDistanceFromMultiplePoints);
 }
 function getDistanceFromPoint(position){
-	var lat = 51.404164;
-	var lng = 0.003181;
+	var lat = 51.524616;
+	var lng = -0.13818;
 	var distance = calculateDistance(position.coords.latitude, position.coords.longitude, lat, lng, 'K');
 	if (distance <= 0.1){
-		alert("Within proximity of Valley Road (100m)");
+		alert("Within proximity of UCL campus (100m)");
 	}
 }
 // code adapted from https://www.htmlgoodies.com/beyond/javascript/calculate-the-distance-between-two-points-inyour-web-apps.html
@@ -61,7 +61,7 @@ function calculateDistance(lat1,lon1,lat2,lon2,unit){
 
             
 function getDistanceFromMultiplePoints(position){
-	var minDistance = 100000000000;
+	var minDistance = 8000000;
 	var closestQuake= "";
 	for(var i = 0; i < earthquakes.features.length; i++) {
 		var obj = earthquakes.features[i];
@@ -71,5 +71,5 @@ function getDistanceFromMultiplePoints(position){
 			closestQuake = obj.properties.place;
 		}
 	}
-	alert("Earthquake: " + closestQuake + " is distance " + minDistance + "away");
+	alert("Earthquake: " + closestQuake + " is " + minDistance + " km away");
 }
