@@ -43,6 +43,27 @@ function getDistanceFromPoint(position){
 }
 // code adapted from https://www.htmlgoodies.com/beyond/javascript/calculate-the-distance-between-two-points-inyour-web-apps.html
 
+
+
+            
+
+function getDistanceFromMultiplePoints(position) {
+var minDistance = 100000000000;
+var closestQuake = "";
+for(var i = 0; i < earthquakes.features.length; i++) {
+var obj = earthquakes.features[i];
+var distance = calculateDistance(position.coords.latitude,
+position.coords.longitude,obj.geometry.coordinates[0], obj.geometry.coordinates[1], 'K');
+if (distance < minDistance){
+minDistance = distance;
+closestQuake = obj.properties.place;
+}
+}
+alert("Earthquake: " + closestQuake + " is distance " + minDistance + "away");
+}
+
+
+
 function calculateDistance(lat1,lon1,lat2,lon2,unit){
 	var radlat1 = Math.PI * lat1/180;
 	var radlat2 = Math.PI * lat2/180;
@@ -53,23 +74,9 @@ function calculateDistance(lat1,lon1,lat2,lon2,unit){
 	var subAngle = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
 	subAngle = Math.acos(subAngle);
     subAngle = subAngle * 180/Math.PI; // convert the degree value returned by acos back to degrees from radians
-     dist = (subAngle/360) * 2 * Math.PI * 3956; // (subtended angle in degrees/360) * 2 * pi * radius where radius of Earth is 39556 miles
+    dist = (subAngle/360) * 2 * Math.PI * 3956; // (subtended angle in degrees/360) * 2 * pi * radius where radius of Earth is 39556 miles
+     
      if (unit=="K"){dist = dist * 1.609344 ;} // convert miles to km 
      if (unit=="N"){dist= dist * 0.8684;} //convert miles to nautical miles
      return dist;
-}
-
-            
-function getDistanceFromMultiplePoints(position){
-	var minDistance = 8000000;
-	var closestQuake= "";
-	for(var i = 0; i < earthquakes.features.length; i++) {
-		var obj = earthquakes.features[i];
-		     var distance = calculateDistance(position.coords.latitude, position.coords.longitude,obj.geometry.coordinate[0], obj.geometry.coordinates[1],'K');
-		if (distance < minDistance){
-			minDistance = distance;
-			closestQuake = obj.properties.place;
-		}
-	}
-	alert("Earthquake: " + closestQuake + " is " + minDistance + " km away");
 }
